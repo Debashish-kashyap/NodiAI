@@ -9,7 +9,7 @@ export const PilotProgramSection: React.FC = () => {
   return (
     <section id="pilot" className="py-20 md:py-24 bg-[#fcfbf9] border-t border-[#e9e6e0]">
       <Container>
-        <div className="max-w-4xl mx-auto rounded-3xl border border-blue-200/90 bg-gradient-to-b from-blue-50/70 via-white to-white p-8 sm:p-14 shadow-sm relative overflow-hidden">
+        <div className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl border border-blue-200/90 bg-gradient-to-b from-blue-50/70 via-white to-white p-6 sm:p-14 shadow-sm relative overflow-hidden">
           <div className="flex flex-col md:flex-row gap-8 items-center justify-between relative z-10">
             <div className="space-y-4 max-w-xl">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100/70 border border-blue-200 text-xs font-semibold text-blue-800">

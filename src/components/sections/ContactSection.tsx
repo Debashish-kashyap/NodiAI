@@ -68,7 +68,7 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Right Column: Interactive Form */}
-            <div className="lg:col-span-7 bg-[#fcfbf9] rounded-3xl border border-neutral-200/90 p-8 sm:p-10 shadow-xs">
+            <div className="lg:col-span-7 bg-[#fcfbf9] rounded-2xl sm:rounded-3xl border border-neutral-200/90 p-5 sm:p-10 shadow-xs">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4">
                   <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">

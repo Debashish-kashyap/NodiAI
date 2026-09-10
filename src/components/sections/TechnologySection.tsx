@@ -51,7 +51,7 @@ export const TechnologySection: React.FC = () => {
         </div>
 
         {/* Origin Story Banner from PRD (Assamese 74M model) */}
-        <div className="rounded-3xl bg-gradient-to-r from-neutral-950 via-neutral-900 to-blue-950 text-white p-8 sm:p-12 relative overflow-hidden shadow-xl">
+        <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-r from-neutral-950 via-neutral-900 to-blue-950 text-white p-6 sm:p-8 lg:p-12 relative overflow-hidden shadow-xl">
           <div className="relative z-10 max-w-2xl space-y-4">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-blue-400 bg-blue-900/60 px-3 py-1 rounded-full border border-blue-700/50">
               The NodiAI Story

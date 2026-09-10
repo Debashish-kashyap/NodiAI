@@ -33,8 +33,8 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Editorial Serif Headline (Voiceflow Style) */}
-        <div className="text-center max-w-4xl mx-auto space-y-5">
-          <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] tracking-tight text-neutral-950 font-normal leading-[1.08]">
+        <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-5">
+          <h1 className="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-[5rem] tracking-tight text-neutral-950 font-normal leading-[1.1] sm:leading-[1.08]">
             AI for your documents.{' '}
             <span className="italic block sm:inline font-serif font-light text-neutral-800">
               On your terms.
@@ -42,39 +42,39 @@ export const HeroSection: React.FC = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          <p className="text-sm sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-normal px-2 sm:px-0">
             The Private Document Intelligence platform enabling schools, clinics, legal firms, and enterprises to search, summarize, and automate internal records — with zero data exposure.
           </p>
 
           {/* Voiceflow Style Email Input Pill CTA */}
-          <div className="pt-3 max-w-md mx-auto">
+          <div className="pt-2 sm:pt-3 max-w-md mx-auto">
             <form
               onSubmit={handleSubmit}
-              className="flex items-center bg-white p-1.5 pl-4 rounded-full border border-neutral-300/90 shadow-sm hover:border-blue-400 focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center bg-white p-2 sm:p-1.5 sm:pl-4 rounded-2xl sm:rounded-full border border-neutral-300/90 shadow-sm hover:border-blue-400 focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all gap-2 sm:gap-0"
             >
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your institutional email..."
-                className="w-full text-sm text-neutral-900 placeholder:text-neutral-400 bg-transparent focus:outline-hidden"
+                placeholder="Enter institutional email..."
+                className="w-full text-sm text-neutral-900 placeholder:text-neutral-400 bg-transparent px-2 sm:px-0 py-1.5 sm:py-0 focus:outline-hidden"
               />
               <button
                 type="submit"
-                className="shrink-0 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-sm font-medium shadow-xs transition-all"
+                className="shrink-0 inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl sm:rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-sm font-medium shadow-xs transition-all cursor-pointer"
               >
                 <span>Request Demo</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </form>
 
-            <div className="flex items-center justify-center gap-4 mt-3 text-xs text-neutral-500">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-3 text-xs text-neutral-500">
               <span className="inline-flex items-center gap-1">
                 <Lock className="w-3 h-3 text-emerald-600" />
                 Air-gapped & On-Premise
               </span>
-              <span>·</span>
+              <span className="hidden sm:inline">·</span>
               <span className="inline-flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3 text-blue-600" />
                 No Public Cloud Telemetry
@@ -84,9 +84,9 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Scenic Visual Canvas with Integrated CloudShader & Floating Mockup */}
-        <div className="mt-12 sm:mt-16 relative mx-auto max-w-5xl rounded-3xl border border-neutral-200/90 bg-white/60 p-2 sm:p-3 shadow-xl backdrop-blur-md overflow-hidden">
+        <div className="mt-10 sm:mt-16 relative mx-auto max-w-5xl rounded-2xl sm:rounded-3xl border border-neutral-200/90 bg-white/60 p-2 sm:p-3 shadow-xl backdrop-blur-md overflow-hidden">
           {/* Cloud Shader Backdrop */}
-          <div className="relative h-64 sm:h-80 md:h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#3876ba] to-[#8cbfe8]">
+          <div className="relative h-[380px] sm:h-80 md:h-96 w-full rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-[#3876ba] to-[#8cbfe8]">
             <CloudShader
               className="absolute inset-0 w-full h-full"
               speed={0.8}

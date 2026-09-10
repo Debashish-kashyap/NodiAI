@@ -39,7 +39,7 @@ export const UseCasesSection: React.FC = () => {
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
           {useCasesData.map((item) => {
             const isActive = item.id === activeTab;
             return (
@@ -47,21 +47,21 @@ export const UseCasesSection: React.FC = () => {
                 key={item.id}
                 type="button"
                 onClick={() => setActiveTab(item.id)}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer text-center ${
                   isActive
                     ? 'bg-neutral-900 text-white shadow-xs scale-102'
                     : 'bg-white text-neutral-600 hover:text-neutral-950 border border-neutral-200 hover:bg-neutral-50'
                 }`}
               >
                 <span>{useCaseIcons[item.id]}</span>
-                <span>{item.industry}</span>
+                <span className="truncate">{item.industry}</span>
               </button>
             );
           })}
         </div>
 
         {/* Active Tab Card */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl border border-neutral-200/90 p-8 sm:p-12 shadow-sm">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-neutral-200/90 p-5 sm:p-12 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-5">
               <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
