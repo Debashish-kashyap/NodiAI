@@ -5,11 +5,13 @@ import Container from '@/components/layout/Container';
 import { pilotProgramContent } from '@/data/siteContent';
 import { ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 
+import { Reveal } from '@/components/ui/RevealAnimation';
+
 export const PilotProgramSection: React.FC = () => {
   return (
     <section id="pilot" className="py-20 md:py-24 bg-white/80 backdrop-blur-2xl border-t border-white/60">
       <Container>
-        <div className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl border border-blue-200/90 bg-gradient-to-b from-blue-50/70 via-white to-white p-6 sm:p-14 shadow-sm relative overflow-hidden">
+        <Reveal scale={true} className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl border border-blue-200/90 bg-gradient-to-b from-blue-50/80 via-white/95 to-white/90 p-6 sm:p-14 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
           <div className="flex flex-col md:flex-row gap-8 items-center justify-between relative z-10">
             <div className="space-y-4 max-w-xl">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100/70 border border-blue-200 text-xs font-semibold text-blue-800">
@@ -38,7 +40,7 @@ export const PilotProgramSection: React.FC = () => {
             <div className="shrink-0 w-full md:w-auto text-center">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow-md transition-all active:scale-95"
+                className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow-md transition-all active:scale-95 hover:scale-103"
               >
                 <span>{pilotProgramContent.ctaText}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -48,7 +50,7 @@ export const PilotProgramSection: React.FC = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

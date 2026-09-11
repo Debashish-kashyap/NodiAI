@@ -14,11 +14,13 @@ const techIcons: Record<string, React.ReactNode> = {
   airgap: <Radio className="w-5 h-5 text-blue-600" />,
 };
 
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/RevealAnimation';
+
 export const TechnologySection: React.FC = () => {
   return (
     <section id="technology" className="py-20 md:py-28 bg-white/75 backdrop-blur-2xl border-t border-white/50">
       <Container>
-        <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
+        <Reveal className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-xs font-semibold text-blue-700">
             Engineered For Strict Environments
           </div>
@@ -28,14 +30,14 @@ export const TechnologySection: React.FC = () => {
           <p className="text-base sm:text-lg text-neutral-600">
             NodiAI combines retrieval-augmented generation with high-efficiency localized models to deliver rapid insights on cost-effective hardware.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {/* Feature Grid with Stagger */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {technologyHighlights.map((item) => (
-            <div
+            <StaggerItem
               key={item.id}
-              className="p-6 rounded-3xl border border-neutral-200/80 bg-[#fcfbf9] hover:border-blue-300 hover:shadow-xs transition-all"
+              className="p-6 rounded-3xl border border-neutral-200/80 bg-white/90 backdrop-blur-md hover:border-blue-300 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
             >
               <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-center justify-center mb-4">
                 {techIcons[item.id] || <Cpu className="w-5 h-5 text-blue-600" />}
@@ -46,12 +48,12 @@ export const TechnologySection: React.FC = () => {
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        {/* Origin Story Banner from PRD (Assamese 74M model) */}
-        <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-r from-neutral-950 via-neutral-900 to-blue-950 text-white p-6 sm:p-8 lg:p-12 relative overflow-hidden shadow-xl">
+        {/* Origin Story Banner with Reveal */}
+        <Reveal direction="up" scale={true} delay={0.2} className="rounded-2xl sm:rounded-3xl bg-gradient-to-r from-neutral-950 via-neutral-900 to-blue-950 text-white p-6 sm:p-8 lg:p-12 relative overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-shadow">
           <div className="relative z-10 max-w-2xl space-y-4">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-blue-400 bg-blue-900/60 px-3 py-1 rounded-full border border-blue-700/50">
               The NodiAI Story
@@ -76,7 +78,7 @@ export const TechnologySection: React.FC = () => {
               </span>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

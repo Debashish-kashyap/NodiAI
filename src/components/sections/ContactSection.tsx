@@ -5,6 +5,8 @@ import Container from '@/components/layout/Container';
 import { ContactFormData } from '@/types';
 import { Send, CheckCircle2, ShieldCheck } from 'lucide-react';
 
+import { Reveal } from '@/components/ui/RevealAnimation';
+
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
@@ -30,7 +32,7 @@ export const ContactSection: React.FC = () => {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Heading & Trust Statements */}
-            <div className="lg:col-span-5 space-y-6">
+            <Reveal direction="right" className="lg:col-span-5 space-y-6">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-xs font-semibold text-blue-700">
                 Direct Consultation
               </div>
@@ -61,14 +63,14 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/70 text-xs text-neutral-500">
+              <div className="p-4 rounded-2xl bg-neutral-50/90 border border-neutral-200/80 text-xs text-neutral-500">
                 <span>Direct inquiries: </span>
                 <strong className="text-neutral-800">team@nodiai.com</strong>
               </div>
-            </div>
+            </Reveal>
 
             {/* Right Column: Interactive Form */}
-            <div className="lg:col-span-7 bg-[#fcfbf9] rounded-2xl sm:rounded-3xl border border-neutral-200/90 p-5 sm:p-10 shadow-xs">
+            <Reveal direction="left" scale={true} className="lg:col-span-7 bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-neutral-200/90 p-5 sm:p-10 shadow-xl">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4">
                   <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
@@ -211,7 +213,7 @@ export const ContactSection: React.FC = () => {
                   </p>
                 </form>
               )}
-            </div>
+            </Reveal>
           </div>
         </div>
       </Container>

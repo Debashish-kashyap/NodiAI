@@ -13,11 +13,13 @@ const problemIcons: Record<string, React.ReactNode> = {
   'repetitive-admin': <FileWarning className="w-5 h-5 text-neutral-600" />,
 };
 
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/RevealAnimation';
+
 export const ProblemSection: React.FC = () => {
   return (
     <section id="problem" className="py-20 md:py-28 bg-white/80 backdrop-blur-2xl border-t border-white/60">
       <Container>
-        <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
+        <Reveal className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-xs font-semibold text-red-700">
             The Institutional Bottleneck
           </div>
@@ -28,13 +30,13 @@ export const ProblemSection: React.FC = () => {
           <p className="text-base sm:text-lg text-neutral-600">
             Internal reports, circulars, student files, and case notes are accumulating. Yet unlocking their value with public AI poses severe privacy and compliance liabilities.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {problemData.map((item, idx) => (
-            <div
+            <StaggerItem
               key={item.id}
-              className={`p-6 rounded-3xl border border-neutral-200/80 bg-white/90 backdrop-blur-md hover:border-neutral-300 hover:shadow-md transition-all ${
+              className={`p-6 rounded-3xl border border-neutral-200/80 bg-white/90 backdrop-blur-md hover:border-blue-300/80 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${
                 idx === 0 ? 'md:col-span-2 lg:col-span-1 bg-gradient-to-b from-amber-50/70 to-white/90' : ''
               }`}
             >
@@ -47,11 +49,11 @@ export const ProblemSection: React.FC = () => {
               <p className="text-sm text-neutral-600 leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </StaggerItem>
           ))}
 
           {/* Callout box */}
-          <div className="p-6 rounded-3xl border border-blue-200/80 bg-blue-50/50 flex flex-col justify-between">
+          <StaggerItem className="p-6 rounded-3xl border border-blue-200/80 bg-blue-50/70 backdrop-blur-md flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-800">
               The Trade-off Ends Here
             </span>
@@ -63,8 +65,8 @@ export const ProblemSection: React.FC = () => {
             <p className="text-xs text-blue-700 font-medium">
               NodiAI is engineered specifically to deliver both.
             </p>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
       </Container>
     </section>
   );

@@ -1,12 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
+import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { siteConfig } from '@/data/siteContent';
 import { ShieldCheck, ArrowRight, Lock, CheckCircle2, FileText, Briefcase, Building2 } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const [email, setEmail] = useState('');
+  const heroRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Parallax subtle shifts for 3D depth
+  const previewYRaw = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const previewY = useSpring(previewYRaw, { stiffness: 100, damping: 30 });
+  const previewOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.4]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,48 +31,70 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden bg-transparent">
+    <section ref={heroRef} className="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden bg-transparent">
       {/* Subtle radial scrim behind hero content for crisp legibility */}
       <div className="absolute inset-0 bg-radial from-slate-950/20 via-transparent to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Trust Pill */}
-        <div className="flex justify-center mb-6">
+        {/* Top Trust Pill with Entrance Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex justify-center mb-6"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/25 backdrop-blur-xl border border-white/40 shadow-md text-xs md:text-sm text-white hover:bg-white/35 transition-all">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="font-semibold text-white">Private By Design</span>
             <span className="text-white/40">|</span>
             <span className="text-white/95">{siteConfig.locationBadge}</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Editorial Serif Headline (Bloom / Reference Style) */}
         <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-6">
-          <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-white font-normal leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-white font-normal leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
+          >
             AI for your documents.{' '}
             <span className="italic block sm:inline font-serif font-light text-white/95">
               On your terms.
             </span>
-          </h1>
+          </motion.h1>
 
           {/* Subheadline */}
-          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-normal px-2 sm:px-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+          <motion.p
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-normal px-2 sm:px-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
+          >
             The Private Document Intelligence platform enabling schools, clinics, legal firms, and enterprises to search, summarize, and automate internal records — with zero data exposure.
-          </p>
+          </motion.p>
 
           {/* Action CTAs: Bloom Pill Button + Institutional Email Input */}
-          <div className="pt-3 sm:pt-6 max-w-xl mx-auto space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="pt-3 sm:pt-6 max-w-xl mx-auto space-y-4"
+          >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               {/* Primary Bloom-style circular arrow pill CTA */}
-              <Link
-                href="#contact"
-                className="group shrink-0 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white hover:bg-neutral-50 text-neutral-900 font-medium text-sm sm:text-base shadow-xl hover:shadow-2xl hover:scale-102 transition-all border border-white/80 active:scale-98"
-              >
-                <span className="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs group-hover:translate-x-0.5 transition-transform">
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-                <span className="font-semibold">Book Consultation</span>
-              </Link>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Link
+                  href="#contact"
+                  className="group shrink-0 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white hover:bg-neutral-50 text-neutral-900 font-medium text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all border border-white/80"
+                >
+                  <span className="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs group-hover:translate-x-0.5 transition-transform">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                  <span className="font-semibold">Book Consultation</span>
+                </Link>
+              </motion.div>
 
               {/* Direct Demo Input Pill */}
               <form
@@ -96,12 +130,18 @@ export const HeroSection: React.FC = () => {
                 No Public Cloud Telemetry
               </span>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Floating Intelligence Workspace Preview Card */}
-        <div className="mt-14 sm:mt-18 relative mx-auto max-w-4xl">
-          <div className="bg-white/92 backdrop-blur-2xl rounded-2xl sm:rounded-3xl border border-white/90 p-5 sm:p-7 shadow-2xl relative overflow-hidden">
+        {/* Floating Intelligence Workspace Preview Card with Parallax Depth */}
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.45, ease: [0.21, 0.47, 0.32, 0.98] }}
+          style={{ y: previewY, opacity: previewOpacity }}
+          className="mt-14 sm:mt-18 relative mx-auto max-w-4xl"
+        >
+          <div className="bg-white/92 backdrop-blur-2xl rounded-2xl sm:rounded-3xl border border-white/90 p-5 sm:p-7 shadow-2xl relative overflow-hidden transition-shadow hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]">
             <div className="flex flex-wrap items-center justify-between pb-3.5 mb-4 border-b border-neutral-200/80 gap-2">
               <div className="flex items-center gap-2.5">
                 <div className="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
@@ -142,33 +182,39 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* High-governance Institutional Sector Proof Bar */}
-        <div className="mt-14 pt-8 border-t border-white/25 text-center">
+        {/* High-governance Institutional Sector Proof Bar with Stagger */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-14 pt-8 border-t border-white/25 text-center"
+        >
           <p className="text-xs uppercase tracking-wider font-semibold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)] mb-6">
             Engineered for high-governance institutional sectors
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 items-center justify-center max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+            <motion.div whileHover={{ y: -3 }} className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
               <Building2 className="w-4 h-4 text-blue-600" />
               <span>Colleges & Universities</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+            </motion.div>
+            <motion.div whileHover={{ y: -3 }} className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
               <ShieldCheck className="w-4 h-4 text-blue-600" />
               <span>Healthcare Clinics</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+            </motion.div>
+            <motion.div whileHover={{ y: -3 }} className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
               <FileText className="w-4 h-4 text-blue-600" />
               <span>Legal Practices</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+            </motion.div>
+            <motion.div whileHover={{ y: -3 }} className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
               <Briefcase className="w-4 h-4 text-blue-600" />
               <span>Regional Enterprises</span>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Bloom-inspired Scenic Landscape & Mist Horizon Silhouette */}

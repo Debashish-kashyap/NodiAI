@@ -4,12 +4,14 @@ import React from 'react';
 import Container from '@/components/layout/Container';
 import { Shield, Layers, Cpu, Database, ArrowRight, Check, Activity } from 'lucide-react';
 
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/RevealAnimation';
+
 export const SolutionSection: React.FC = () => {
   return (
     <section id="solution" className="py-20 md:py-28 bg-white/75 backdrop-blur-2xl border-t border-white/50">
       <Container>
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-xs font-semibold text-blue-700">
             <Layers className="w-3.5 h-3.5" />
             The NodiAI Architecture
@@ -20,12 +22,12 @@ export const SolutionSection: React.FC = () => {
           <p className="text-base sm:text-lg text-neutral-600 font-normal">
             A private intelligence pipeline that turns isolated institutional records into instantly searchable, actionable intelligence.
           </p>
-        </div>
+        </Reveal>
 
         {/* Voiceflow Style 3-Column Showcase Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <StaggerContainer className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {/* Card 1: Visual Ingestion Pipeline */}
-          <div className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-sm flex flex-col justify-between overflow-hidden relative group hover:shadow-md transition-shadow">
+          <StaggerItem className="rounded-3xl border border-neutral-200/80 bg-white/90 backdrop-blur-md p-6 shadow-sm flex flex-col justify-between overflow-hidden relative group hover:shadow-2xl hover:-translate-y-2 hover:border-blue-400/50 transition-all duration-300">
             <div className="absolute inset-0 bg-dot-pattern opacity-40 pointer-events-none" />
 
             <div className="relative z-10">
@@ -81,10 +83,10 @@ export const SolutionSection: React.FC = () => {
               <span>Supports OCR & Scanned Records</span>
               <Check className="w-4 h-4 text-emerald-600" />
             </div>
-          </div>
+          </StaggerItem>
 
           {/* Card 2: Interactive Bilingual Chat Widget */}
-          <div className="rounded-3xl border border-neutral-200/80 bg-gradient-to-b from-neutral-900 to-neutral-950 text-white p-6 shadow-xl flex flex-col justify-between overflow-hidden relative">
+          <StaggerItem className="rounded-3xl border border-neutral-200/80 bg-gradient-to-b from-neutral-900 to-neutral-950 text-white p-6 shadow-xl flex flex-col justify-between overflow-hidden relative hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -135,10 +137,10 @@ export const SolutionSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* Card 3: Governance, Resolution & Metrics */}
-          <div className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-sm flex flex-col justify-between overflow-hidden relative group hover:shadow-md transition-shadow">
+          <StaggerItem className="rounded-3xl border border-neutral-200/80 bg-white/90 backdrop-blur-md p-6 shadow-sm flex flex-col justify-between overflow-hidden relative group hover:shadow-2xl hover:-translate-y-2 hover:border-blue-400/50 transition-all duration-300">
             <div className="absolute inset-0 bg-guilloche opacity-70 pointer-events-none" />
 
             <div className="relative z-10">
@@ -212,8 +214,8 @@ export const SolutionSection: React.FC = () => {
               <span>Full Role-Based Access Controls</span>
               <Shield className="w-4 h-4 text-blue-600" />
             </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
       </Container>
     </section>
   );

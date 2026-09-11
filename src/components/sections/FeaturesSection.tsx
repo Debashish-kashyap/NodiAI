@@ -22,11 +22,13 @@ const featureIconMap: Record<string, React.ReactNode> = {
   translation: <Languages className="w-5 h-5 text-blue-600" />,
 };
 
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/RevealAnimation';
+
 export const FeaturesSection: React.FC = () => {
   return (
     <section id="features" className="py-20 md:py-28 bg-white/80 backdrop-blur-2xl border-t border-white/60">
       <Container>
-        <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
+        <Reveal className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-xs font-semibold text-blue-700">
             <Workflow className="w-3.5 h-3.5" />
             Core Capabilities
@@ -37,17 +39,17 @@ export const FeaturesSection: React.FC = () => {
           <p className="text-base sm:text-lg text-neutral-600">
             From cross-lingual document synthesis to deadline extraction, NodiAI handles the administrative weight so your team can focus on execution.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuresData.map((feature) => (
-            <div
+            <StaggerItem
               key={feature.id}
-              className="p-7 rounded-3xl bg-white border border-neutral-200/80 shadow-2xs hover:shadow-md hover:border-blue-200 transition-all group flex flex-col justify-between"
+              className="p-7 rounded-3xl bg-white/90 backdrop-blur-md border border-neutral-200/80 shadow-2xs hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <div className="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <div className="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center group-hover:scale-110 transition-transform">
                     {featureIconMap[feature.id] || <FileText className="w-5 h-5 text-blue-600" />}
                   </div>
                   {feature.tag && (
@@ -69,9 +71,9 @@ export const FeaturesSection: React.FC = () => {
                 <span>Learn how it operates</span>
                 <span>→</span>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Container>
     </section>
   );

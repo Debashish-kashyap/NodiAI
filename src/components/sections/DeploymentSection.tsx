@@ -11,11 +11,13 @@ const deploymentIcons: Record<string, React.ReactNode> = {
   'controlled-env': <ShieldCheck className="w-6 h-6 text-blue-600" />,
 };
 
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/RevealAnimation';
+
 export const DeploymentSection: React.FC = () => {
   return (
     <section id="deployment" className="py-20 md:py-28 bg-white/75 backdrop-blur-2xl border-t border-white/50">
       <Container>
-        <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
+        <Reveal className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-xs font-semibold text-emerald-700">
             <Lock className="w-3.5 h-3.5" />
             Infrastructure Independence
@@ -27,20 +29,20 @@ export const DeploymentSection: React.FC = () => {
           <p className="text-base sm:text-lg text-neutral-600 font-normal">
             Whether air-gapped on campus servers or isolated inside a dedicated Virtual Private Cloud, NodiAI never exposes institutional data to public APIs.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {deploymentOptions.map((opt, idx) => (
-            <div
+            <StaggerItem
               key={opt.id}
-              className={`rounded-3xl p-8 border flex flex-col justify-between transition-all ${
+              className={`rounded-3xl p-8 border flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 idx === 0
-                  ? 'border-blue-300 bg-gradient-to-b from-blue-50/40 via-white to-white shadow-md relative'
-                  : 'border-neutral-200/90 bg-[#fcfbf9] hover:border-neutral-300 hover:shadow-xs'
+                  ? 'border-blue-300 bg-gradient-to-b from-blue-50/70 via-white/95 to-white/90 shadow-lg relative'
+                  : 'border-neutral-200/80 bg-white/90 backdrop-blur-md hover:border-blue-300/60 shadow-sm'
               }`}
             >
               {idx === 0 && (
-                <div className="absolute -top-3 left-8 px-3 py-0.5 rounded-full bg-blue-600 text-white text-[11px] font-semibold tracking-wide uppercase">
+                <div className="absolute -top-3 left-8 px-3 py-0.5 rounded-full bg-blue-600 text-white text-[11px] font-semibold tracking-wide uppercase shadow-xs">
                   Most Popular For Institutions
                 </div>
               )}
@@ -80,16 +82,16 @@ export const DeploymentSection: React.FC = () => {
                   href="#contact"
                   className={`w-full text-center block py-2.5 rounded-full text-sm font-medium transition-all ${
                     idx === 0
-                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-xs'
-                      : 'bg-white border border-neutral-300 text-neutral-800 hover:bg-neutral-50'
+                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-xs active:scale-98'
+                      : 'bg-white border border-neutral-300 text-neutral-800 hover:bg-neutral-50 active:scale-98'
                   }`}
                 >
                   Discuss Deployment
                 </a>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Container>
     </section>
   );
