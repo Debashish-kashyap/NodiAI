@@ -24,7 +24,7 @@ export const UseCasesSection: React.FC = () => {
   const activeCase = useCasesData.find((c) => c.id === activeTab) || useCasesData[0];
 
   return (
-    <section id="use-cases" className="py-20 md:py-28 bg-[#fcfbf9] border-t border-[#e9e6e0]">
+    <section id="use-cases" className="py-20 md:py-28 bg-white/80 backdrop-blur-2xl border-t border-white/60">
       <Container>
         <div className="max-w-3xl mx-auto text-center mb-14 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-xs font-semibold text-blue-700">

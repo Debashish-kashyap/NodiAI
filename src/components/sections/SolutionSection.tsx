@@ -6,7 +6,7 @@ import { Shield, Layers, Cpu, Database, ArrowRight, Check, Activity } from 'luci
 
 export const SolutionSection: React.FC = () => {
   return (
-    <section id="solution" className="py-20 md:py-28 bg-[#fcfbf9] border-t border-[#e9e6e0]/60">
+    <section id="solution" className="py-20 md:py-28 bg-white/75 backdrop-blur-2xl border-t border-white/50">
       <Container>
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">

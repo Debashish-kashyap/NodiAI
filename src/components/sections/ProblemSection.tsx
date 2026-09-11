@@ -15,7 +15,7 @@ const problemIcons: Record<string, React.ReactNode> = {
 
 export const ProblemSection: React.FC = () => {
   return (
-    <section id="problem" className="py-20 md:py-28 bg-white border-t border-[#e9e6e0]">
+    <section id="problem" className="py-20 md:py-28 bg-white/80 backdrop-blur-2xl border-t border-white/60">
       <Container>
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-xs font-semibold text-red-700">
@@ -34,8 +34,8 @@ export const ProblemSection: React.FC = () => {
           {problemData.map((item, idx) => (
             <div
               key={item.id}
-              className={`p-6 rounded-3xl border border-neutral-200/90 bg-[#fcfbf9] hover:border-neutral-300 hover:shadow-xs transition-all ${
-                idx === 0 ? 'md:col-span-2 lg:col-span-1 bg-gradient-to-b from-amber-50/40 to-[#fcfbf9]' : ''
+              className={`p-6 rounded-3xl border border-neutral-200/80 bg-white/90 backdrop-blur-md hover:border-neutral-300 hover:shadow-md transition-all ${
+                idx === 0 ? 'md:col-span-2 lg:col-span-1 bg-gradient-to-b from-amber-50/70 to-white/90' : ''
               }`}
             >
               <div className="w-10 h-10 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center shadow-2xs mb-4">

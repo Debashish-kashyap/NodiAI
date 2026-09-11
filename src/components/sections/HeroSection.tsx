@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { CloudShader } from '@/components/ui/cloud-shader';
 import { siteConfig } from '@/data/siteContent';
 import { ShieldCheck, ArrowRight, Lock, CheckCircle2, FileText, Briefcase, Building2 } from 'lucide-react';
 
@@ -20,170 +19,194 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-gradient-to-b from-[#fcfbf9] via-[#f8f6f0] to-[#fcfbf9]">
+    <section className="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden bg-transparent">
+      {/* Subtle radial scrim behind hero content for crisp legibility */}
+      <div className="absolute inset-0 bg-radial from-slate-950/20 via-transparent to-transparent pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top Trust Pill */}
         <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e5e1d8] shadow-xs text-xs md:text-sm text-neutral-700 hover:border-blue-300 transition-colors">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-medium text-neutral-900">Private By Design</span>
-            <span className="text-neutral-300">|</span>
-            <span className="text-neutral-600">{siteConfig.locationBadge}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/25 backdrop-blur-xl border border-white/40 shadow-md text-xs md:text-sm text-white hover:bg-white/35 transition-all">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="font-semibold text-white">Private By Design</span>
+            <span className="text-white/40">|</span>
+            <span className="text-white/95">{siteConfig.locationBadge}</span>
           </div>
         </div>
 
-        {/* Editorial Serif Headline (Voiceflow Style) */}
-        <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-5">
-          <h1 className="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-[5rem] tracking-tight text-neutral-950 font-normal leading-[1.1] sm:leading-[1.08]">
+        {/* Editorial Serif Headline (Bloom / Reference Style) */}
+        <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-6">
+          <h1 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-white font-normal leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]">
             AI for your documents.{' '}
-            <span className="italic block sm:inline font-serif font-light text-neutral-800">
+            <span className="italic block sm:inline font-serif font-light text-white/95">
               On your terms.
             </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-sm sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-normal px-2 sm:px-0">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-normal px-2 sm:px-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
             The Private Document Intelligence platform enabling schools, clinics, legal firms, and enterprises to search, summarize, and automate internal records — with zero data exposure.
           </p>
 
-          {/* Voiceflow Style Email Input Pill CTA */}
-          <div className="pt-2 sm:pt-3 max-w-md mx-auto">
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center bg-white p-2 sm:p-1.5 sm:pl-4 rounded-2xl sm:rounded-full border border-neutral-300/90 shadow-sm hover:border-blue-400 focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all gap-2 sm:gap-0"
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter institutional email..."
-                className="w-full text-sm text-neutral-900 placeholder:text-neutral-400 bg-transparent px-2 sm:px-0 py-1.5 sm:py-0 focus:outline-hidden"
-              />
-              <button
-                type="submit"
-                className="shrink-0 inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl sm:rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-sm font-medium shadow-xs transition-all cursor-pointer"
+          {/* Action CTAs: Bloom Pill Button + Institutional Email Input */}
+          <div className="pt-3 sm:pt-6 max-w-xl mx-auto space-y-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              {/* Primary Bloom-style circular arrow pill CTA */}
+              <Link
+                href="#contact"
+                className="group shrink-0 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white hover:bg-neutral-50 text-neutral-900 font-medium text-sm sm:text-base shadow-xl hover:shadow-2xl hover:scale-102 transition-all border border-white/80 active:scale-98"
               >
-                <span>Request Demo</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </form>
+                <span className="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs group-hover:translate-x-0.5 transition-transform">
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+                <span className="font-semibold">Book Consultation</span>
+              </Link>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-3 text-xs text-neutral-500">
-              <span className="inline-flex items-center gap-1">
-                <Lock className="w-3 h-3 text-emerald-600" />
+              {/* Direct Demo Input Pill */}
+              <form
+                onSubmit={handleSubmit}
+                className="flex items-center bg-white/95 backdrop-blur-xl p-1.5 pl-4 rounded-full border border-white/60 shadow-xl hover:border-blue-400 focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all w-full sm:w-auto grow max-w-md"
+              >
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Institutional email..."
+                  className="w-full text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-500 bg-transparent px-2 py-1.5 focus:outline-hidden"
+                />
+                <button
+                  type="submit"
+                  className="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs sm:text-sm font-medium shadow-xs transition-all cursor-pointer"
+                >
+                  <span>Request</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              </form>
+            </div>
+
+            {/* Security Guarantee Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
+              <span className="inline-flex items-center gap-1.5 bg-black/20 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/25">
+                <Lock className="w-3.5 h-3.5 text-emerald-300" />
                 Air-gapped & On-Premise
               </span>
-              <span className="hidden sm:inline">·</span>
-              <span className="inline-flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3 text-blue-600" />
+              <span className="inline-flex items-center gap-1.5 bg-black/20 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/25">
+                <CheckCircle2 className="w-3.5 h-3.5 text-blue-300" />
                 No Public Cloud Telemetry
               </span>
             </div>
           </div>
         </div>
 
-        {/* Scenic Visual Canvas with Integrated CloudShader & Floating Mockup */}
-        <div className="mt-10 sm:mt-16 relative mx-auto max-w-5xl rounded-2xl sm:rounded-3xl border border-neutral-200/90 bg-white/60 p-2 sm:p-3 shadow-xl backdrop-blur-md overflow-hidden">
-          {/* Cloud Shader Backdrop */}
-          <div className="relative h-[380px] sm:h-80 md:h-96 w-full rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-b from-[#3876ba] to-[#8cbfe8]">
-            <CloudShader
-              className="absolute inset-0 w-full h-full"
-              speed={0.8}
-              count={5}
-              cloudColor="#ffffff"
-              skyTopColor="#2b5993"
-              skyBottomColor="#8cbfe8"
-            />
-
-            {/* Subtle Horizon Mist Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent pointer-events-none" />
-
-            {/* Central Institutional Intelligence Workspace Preview */}
-            <div className="absolute inset-x-4 bottom-4 md:inset-x-12 md:bottom-6 z-20">
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 md:p-6 shadow-2xl border border-white/80 max-w-2xl mx-auto">
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded bg-blue-600 text-white flex items-center justify-center text-xs font-bold">
-                      N
-                    </div>
-                    <span className="text-xs font-semibold text-neutral-800 tracking-tight">
-                      Internal Document Repository · Private Node
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Encrypted Local RAG
-                  </div>
+        {/* Floating Intelligence Workspace Preview Card */}
+        <div className="mt-14 sm:mt-18 relative mx-auto max-w-4xl">
+          <div className="bg-white/92 backdrop-blur-2xl rounded-2xl sm:rounded-3xl border border-white/90 p-5 sm:p-7 shadow-2xl relative overflow-hidden">
+            <div className="flex flex-wrap items-center justify-between pb-3.5 mb-4 border-b border-neutral-200/80 gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
+                  N
                 </div>
-
-                <div className="space-y-2.5 text-xs text-neutral-700">
-                  <div className="flex items-start gap-2 bg-neutral-50 p-2.5 rounded-lg border border-neutral-100">
-                    <FileText className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-neutral-900">
-                        Query: &ldquo;Extract semester fee rebate policies & circular deadines from 2024-2026 files&rdquo;
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2 bg-blue-50/70 p-2.5 rounded-lg border border-blue-100/70">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-neutral-800 leading-relaxed">
-                        <strong>NodiAI:</strong> Identified 3 applicable circulars. Section 4(B) specifies a 15% merit concession deadline of Oct 15. Action item generated for Registrar notice drafting.
-                      </p>
-                    </div>
-                  </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs sm:text-sm font-semibold text-neutral-900 tracking-tight">
+                    Internal Document Repository · Private Node
+                  </span>
+                  <span className="hidden sm:inline-block text-[10px] text-neutral-500 font-mono bg-neutral-100 px-2 py-0.5 rounded">
+                    v2.4-airgap
+                  </span>
                 </div>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Encrypted Local RAG
               </div>
             </div>
 
-            {/* Voiceflow Floating Story / Badge Card */}
-            <div className="hidden lg:block absolute bottom-6 right-6 z-30">
-              <div className="bg-white/90 backdrop-blur-md rounded-xl p-3 border border-white shadow-lg text-left max-w-xs">
-                <p className="text-[11px] font-semibold text-neutral-900">
-                  Institutional Pilot Program
-                </p>
-                <p className="text-[10px] text-neutral-500 mt-0.5">
-                  Currently accepting 10 select institutions for on-premise evaluation.
-                </p>
-                <Link
-                  href="#pilot"
-                  className="mt-2 text-[10px] font-semibold text-blue-600 hover:text-blue-800 inline-flex items-center gap-0.5"
-                >
-                  Join pilot cohort →
-                </Link>
+            <div className="space-y-3 text-xs sm:text-sm text-neutral-700">
+              <div className="flex items-start gap-2.5 bg-neutral-50/90 p-3 rounded-xl border border-neutral-200/80">
+                <FileText className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-neutral-900">
+                    Query: &ldquo;Extract semester fee rebate policies & circular deadlines from 2024-2026 files&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2.5 bg-blue-50/80 p-3.5 rounded-xl border border-blue-200/70">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-neutral-800 leading-relaxed">
+                    <strong className="text-neutral-950">NodiAI:</strong> Identified 3 applicable circulars. Section 4(B) specifies a 15% merit concession deadline of Oct 15. Action item generated for Registrar notice drafting. Zero external network telemetry transmitted.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Voiceflow Style Social Proof / Sector Bar */}
-        <div className="mt-14 pt-8 border-t border-neutral-200/60 text-center">
-          <p className="text-xs uppercase tracking-wider font-semibold text-neutral-500 mb-6">
+        {/* High-governance Institutional Sector Proof Bar */}
+        <div className="mt-14 pt-8 border-t border-white/25 text-center">
+          <p className="text-xs uppercase tracking-wider font-semibold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)] mb-6">
             Engineered for high-governance institutional sectors
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center max-w-3xl mx-auto opacity-75">
-            <div className="flex items-center justify-center gap-2 text-neutral-700 text-sm font-semibold">
-              <Building2 className="w-4 h-4 text-neutral-500" />
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 items-center justify-center max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+              <Building2 className="w-4 h-4 text-blue-600" />
               <span>Colleges & Universities</span>
             </div>
-            <div className="flex items-center justify-center gap-2 text-neutral-700 text-sm font-semibold">
-              <ShieldCheck className="w-4 h-4 text-neutral-500" />
+            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+              <ShieldCheck className="w-4 h-4 text-blue-600" />
               <span>Healthcare Clinics</span>
             </div>
-            <div className="flex items-center justify-center gap-2 text-neutral-700 text-sm font-semibold">
-              <FileText className="w-4 h-4 text-neutral-500" />
+            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+              <FileText className="w-4 h-4 text-blue-600" />
               <span>Legal Practices</span>
             </div>
-            <div className="flex items-center justify-center gap-2 text-neutral-700 text-sm font-semibold">
-              <Briefcase className="w-4 h-4 text-neutral-500" />
+            <div className="flex items-center justify-center gap-2 bg-white/85 backdrop-blur-xl border border-white/80 py-2.5 px-3 rounded-xl text-neutral-800 text-xs sm:text-sm font-semibold shadow-sm hover:bg-white transition-all">
+              <Briefcase className="w-4 h-4 text-blue-600" />
               <span>Regional Enterprises</span>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Bloom-inspired Scenic Landscape & Mist Horizon Silhouette */}
+      <div className="absolute bottom-0 inset-x-0 h-28 pointer-events-none overflow-hidden z-0">
+        <svg
+          viewBox="0 0 1440 180"
+          fill="none"
+          preserveAspectRatio="none"
+          className="w-full h-full opacity-65"
+        >
+          {/* Back Lavender Mountain Ridge */}
+          <path
+            d="M0,120 Q360,60 720,110 T1440,80 L1440,180 L0,180 Z"
+            fill="#8d79b2"
+            opacity="0.4"
+          />
+          {/* Mid Violet Heather Ridge */}
+          <path
+            d="M0,140 Q400,90 880,130 T1440,110 L1440,180 L0,180 Z"
+            fill="#79669e"
+            opacity="0.5"
+          />
+          {/* Golden Dusk Flora Shimmer */}
+          <path
+            d="M120,155 Q300,125 500,155 T900,145 T1300,150 L1440,180 L0,180 Z"
+            fill="#d99955"
+            opacity="0.3"
+          />
+          {/* Scenic River / Stream Ribbon */}
+          <path
+            d="M580,180 C640,150 670,135 710,120 C735,110 760,115 780,125 C820,145 860,165 920,180 Z"
+            fill="#6d83a3"
+            opacity="0.45"
+          />
+        </svg>
+
+        {/* Soft atmospheric mist fading down into the next section */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
       </div>
     </section>
   );

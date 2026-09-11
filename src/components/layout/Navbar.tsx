@@ -33,8 +33,8 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || mobileMenuOpen
-          ? 'bg-[#fcfbf9]/95 backdrop-blur-md border-b border-[#e9e6e0] shadow-xs py-3'
-          : 'bg-transparent py-4 sm:py-5'
+          ? 'bg-white/85 backdrop-blur-xl border-b border-neutral-200/80 shadow-xs py-3 text-neutral-900'
+          : 'bg-transparent py-4 sm:py-6 text-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,21 +45,32 @@ export const Navbar: React.FC = () => {
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center gap-2.5 group z-50"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-700 to-blue-500 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
               <ShieldCheck className="w-5 h-5" />
             </div>
-            <span className="font-semibold text-xl tracking-tight text-neutral-900">
-              Nodi<span className="text-blue-600">AI</span>
+            <span
+              className={`font-semibold text-xl tracking-tight transition-colors ${
+                isScrolled || mobileMenuOpen ? 'text-neutral-900' : 'text-white drop-shadow-sm'
+              }`}
+            >
+              Nodi
+              <span className={isScrolled || mobileMenuOpen ? 'text-blue-600' : 'text-blue-300'}>
+                AI
+              </span>
             </span>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
             {mainNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-neutral-600 hover:text-neutral-950 px-3 py-1.5 rounded-full hover:bg-neutral-100/70 transition-colors"
+                className={`text-sm font-medium px-3.5 py-1.5 rounded-full transition-all ${
+                  isScrolled
+                    ? 'text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100/80'
+                    : 'text-white/90 hover:text-white hover:bg-white/15 drop-shadow-xs'
+                }`}
               >
                 {item.label}
               </Link>
@@ -73,7 +84,11 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={action.href}
                   href={action.href}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] px-5 py-2 rounded-full shadow-xs hover:shadow-sm transition-all"
+                  className={`inline-flex items-center gap-1.5 text-sm font-medium px-5 py-2 rounded-full transition-all active:scale-[0.98] ${
+                    isScrolled
+                      ? 'text-white bg-blue-600 hover:bg-blue-700 shadow-xs'
+                      : 'text-neutral-900 bg-white hover:bg-neutral-50 shadow-md hover:shadow-lg'
+                  }`}
                 >
                   {action.label}
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -82,7 +97,11 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={action.href}
                   href={action.href}
-                  className="text-sm font-medium text-neutral-700 hover:text-neutral-950 px-3.5 py-2 rounded-full hover:bg-neutral-100 transition-colors"
+                  className={`text-sm font-medium px-3.5 py-2 rounded-full transition-colors ${
+                    isScrolled
+                      ? 'text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100'
+                      : 'text-white/90 hover:text-white hover:bg-white/15 drop-shadow-xs'
+                  }`}
                 >
                   {action.label}
                 </Link>
@@ -94,14 +113,18 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-white/90 border border-neutral-200/90 shadow-2xs text-neutral-800 hover:bg-neutral-50 active:scale-95 transition-all focus:outline-hidden z-50 cursor-pointer"
+            className={`md:hidden flex items-center justify-center w-10 h-10 rounded-xl border transition-all focus:outline-hidden z-50 cursor-pointer ${
+              isScrolled || mobileMenuOpen
+                ? 'bg-white/90 border-neutral-200/90 shadow-2xs text-neutral-800'
+                : 'bg-white/15 border-white/30 backdrop-blur-md text-white shadow-sm'
+            }`}
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
               <X className="w-5 h-5 text-neutral-900 transition-transform duration-200" />
             ) : (
-              <Menu className="w-5 h-5 text-neutral-800 transition-transform duration-200" />
+              <Menu className={`w-5 h-5 transition-transform duration-200 ${isScrolled ? 'text-neutral-800' : 'text-white'}`} />
             )}
           </button>
         </div>

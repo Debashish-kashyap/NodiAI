@@ -13,7 +13,7 @@ const deploymentIcons: Record<string, React.ReactNode> = {
 
 export const DeploymentSection: React.FC = () => {
   return (
-    <section id="deployment" className="py-20 md:py-28 bg-white border-t border-[#e9e6e0]">
+    <section id="deployment" className="py-20 md:py-28 bg-white/75 backdrop-blur-2xl border-t border-white/50">
       <Container>
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-xs font-semibold text-emerald-700">

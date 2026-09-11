@@ -112,15 +112,15 @@ vec3 shadeCloud(vec3 color, vec3 sky, vec2 p, vec2 c, vec2 r, float seed, float 
   float dUp = cloudDensity(p + vec2(0.0, r.y * 0.55), c, r, seed, t);
   float occl = clamp((dUp - d) * 1.1 + d * 0.55, 0.0, 1.0);
 
-  vec3 lit = u_cloud * 1.04;
-  vec3 shadow = mix(u_cloud * 0.60, sky, 0.38);
-  vec3 cloudCol = mix(lit, shadow, occl * 0.85);
+  vec3 lit = u_cloud * 1.0;
+  vec3 shadow = mix(u_cloud * 0.72, sky, 0.42);
+  vec3 cloudCol = mix(lit, shadow, occl * 0.75);
 
-  float alpha = smoothstep(0.02, 0.38, d);
+  float alpha = smoothstep(0.04, 0.44, d) * 0.90;
 
   // silver lining on thin edges
   float rim = smoothstep(0.02, 0.14, d) * (1.0 - smoothstep(0.14, 0.40, d));
-  cloudCol += rim * 0.10;
+  cloudCol += rim * 0.08;
 
   // atmospheric perspective: far clouds fade into the sky
   cloudCol = mix(cloudCol, sky, dist * 0.35);
@@ -161,27 +161,27 @@ void main() {
     color = mix(color, u_cloud * 0.98, wisp * 0.35);
   }
 
-  // far layer: small, high, slow
+  // far layer: high, majestic, slow
   if (u_count > 5.5) {
-    color = cloudPass(color, sky, p, aspect, t, 0.006, 0.10, 0.84, vec2(0.20, 0.10), 43.7, 1.0);
+    color = cloudPass(color, sky, p, aspect, t, 0.005, 0.10, 0.88, vec2(0.24, 0.11), 43.7, 1.0);
   }
   if (u_count > 4.5) {
-    color = cloudPass(color, sky, p, aspect, t, 0.008, 0.62, 0.73, vec2(0.24, 0.12), 71.3, 0.85);
+    color = cloudPass(color, sky, p, aspect, t, 0.007, 0.58, 0.76, vec2(0.28, 0.13), 71.3, 0.85);
   }
 
-  // middle layer
+  // middle layer: puffy, balanced
   if (u_count > 3.5) {
-    color = cloudPass(color, sky, p, aspect, t, 0.011, 0.33, 0.60, vec2(0.34, 0.16), 17.3, 0.55);
+    color = cloudPass(color, sky, p, aspect, t, 0.009, 0.30, 0.64, vec2(0.35, 0.15), 17.3, 0.60);
   }
   if (u_count > 2.5) {
-    color = cloudPass(color, sky, p, aspect, t, 0.013, 0.80, 0.47, vec2(0.30, 0.15), 29.9, 0.45);
+    color = cloudPass(color, sky, p, aspect, t, 0.012, 0.82, 0.52, vec2(0.38, 0.16), 29.9, 0.45);
   }
 
-  // near layer: big, low, fast
+  // lower layer: soft atmospheric drift
   if (u_count > 1.5) {
-    color = cloudPass(color, sky, p, aspect, t, 0.016, 0.05, 0.35, vec2(0.46, 0.20), 91.1, 0.15);
+    color = cloudPass(color, sky, p, aspect, t, 0.014, 0.15, 0.40, vec2(0.42, 0.17), 91.1, 0.25);
   }
-  color = cloudPass(color, sky, p, aspect, t, 0.020, 0.48, 0.20, vec2(0.56, 0.24), 57.2, 0.0);
+  color = cloudPass(color, sky, p, aspect, t, 0.016, 0.65, 0.28, vec2(0.45, 0.18), 57.2, 0.10);
 
   gl_FragColor = vec4(color, 1.0);
 }
@@ -226,11 +226,11 @@ function compile(gl: WebGLRenderingContext, type: number, source: string) {
 export const CloudShader = ({
   className,
   children,
-  speed = 1,
+  speed = 0.6,
   count = 6,
-  cloudColor = "#fbf8f2",
-  skyTopColor = "#3876ba",
-  skyBottomColor = "#8cbfe8",
+  cloudColor = "#ffffff",
+  skyTopColor = "#5a7a9e",
+  skyBottomColor = "#baa8c8",
 }: CloudShaderProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const paramsRef = useRef({
@@ -299,7 +299,7 @@ export const CloudShader = ({
     ).matches;
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       const w = Math.max(1, Math.floor(width * dpr));
@@ -350,7 +350,7 @@ export const CloudShader = ({
   return (
     <div
       className={cn(
-        "relative h-full min-h-80 w-full overflow-hidden",
+        "relative h-full w-full overflow-hidden",
         className,
       )}
     >

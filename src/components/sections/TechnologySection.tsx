@@ -16,7 +16,7 @@ const techIcons: Record<string, React.ReactNode> = {
 
 export const TechnologySection: React.FC = () => {
   return (
-    <section id="technology" className="py-20 md:py-28 bg-white border-t border-[#e9e6e0]">
+    <section id="technology" className="py-20 md:py-28 bg-white/75 backdrop-blur-2xl border-t border-white/50">
       <Container>
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-xs font-semibold text-blue-700">

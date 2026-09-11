@@ -7,7 +7,7 @@ import { ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const PilotProgramSection: React.FC = () => {
   return (
-    <section id="pilot" className="py-20 md:py-24 bg-[#fcfbf9] border-t border-[#e9e6e0]">
+    <section id="pilot" className="py-20 md:py-24 bg-white/80 backdrop-blur-2xl border-t border-white/60">
       <Container>
         <div className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl border border-blue-200/90 bg-gradient-to-b from-blue-50/70 via-white to-white p-6 sm:p-14 shadow-sm relative overflow-hidden">
           <div className="flex flex-col md:flex-row gap-8 items-center justify-between relative z-10">
